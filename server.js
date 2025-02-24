@@ -24,11 +24,16 @@ app.use(cors({
 
 app.use(express.json());
 
-// ... tus rutas (DESPUÉS de CORS) ...
-const subscribeRoute = require('./api/subscribe'); // Ruta corregida
-app.post('/api/subscribe', subscribeRoute);
+// Ruta para la raíz (¡ANTES DE OTRAS RUTAS!)
+app.get("/", (req, res) => {
+    console.log("Solicitud GET a /"); // Log para depuración
+    res.send("Servidor funcionando correctamente");
+});
 
-// ... otras rutas
+// Otras rutas
+const subscribeRoute = require('./api/subscribe');
+app.post('/api/subscribe', subscribeRoute);
+// ...
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
