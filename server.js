@@ -14,11 +14,8 @@ app.get("/", (req, res) => {
     res.send("Servidor funcionando correctamente");
 });
 
-// Solo iniciar el servidor en desarrollo local
-if (process.env.NODE_ENV !== "production") {
-    app.listen(PORT, () => {
-        console.log(`Servidor corriendo en http://localhost:${PORT}`);
-    });
-}
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
 
 module.exports = app;
